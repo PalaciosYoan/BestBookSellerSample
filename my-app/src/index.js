@@ -1,30 +1,18 @@
 import React from "react";
 import ReactDom from "react-dom";
-
-function Greeting() {
+import "./index.css";
+import { books } from "./books";
+import Book from "./Book";
+function BookList() {
   return (
-    <div>
-      <Person />
-      <Message />
-    </div>
+    <section className='booklist'>
+      {/* The job='dev' is the arguement passing to book props */}
+      {books.map((book) => {
+        // {...book} = img=book.img title=book.title etc. but one line
+        return <Book key={book.id} {...book}></Book>;
+      })}
+    </section>
   );
 }
 
-const Person = () => {
-  return <h2>jown</h2>;
-};
-
-const Message = () => {
-  return <p>This is a my paragraph</p>;
-};
-
-//Whats going on under the hood essentially
-// const Greeting = () => {
-//   return React.createElement(
-//     "div",
-//     {},
-//     React.createElement("h1", {}, "potatio")
-//   );
-// };
-
-ReactDom.render(<Greeting />, document.getElementById("root"));
+ReactDom.render(<BookList />, document.getElementById("root"));
